@@ -1,4 +1,4 @@
-module github.com/bobisme/db-stuff-go
+module github.com/bobisme/go-db-stuff
 
 go 1.12
 

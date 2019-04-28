@@ -30,20 +30,7 @@ func initdb() *sqlx.DB {
 	panicIf(err)
 	db, err := sql.Open(driverName, "postgres://postgres@localhost:5432/postgres")
 	panicIf(err)
-	// connConfig, err := pgx.ParseURI("postgres://postgres@localhost:5432/postgres")
-	// panicIf(err)
-	// connPool, err := pgx.NewConnPool(pgx.ConnPoolConfig{
-	// 	ConnConfig:     connConfig,
-	// 	AfterConnect:   nil,
-	// 	MaxConnections: 20,
-	// 	AcquireTimeout: 30 * time.Second,
-	// })
-	// panicIf(err)
-	// db, err := stdlib.OpenFromConnPool(connPool)
-	// if err != nil {
-	// 	connPool.Close()
-	// 	panicIf(err)
-	// }
+	db.SetMaxOpenConns(5)
 	return sqlx.NewDb(db, "pgx")
 }
 
